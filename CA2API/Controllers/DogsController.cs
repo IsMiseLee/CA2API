@@ -29,15 +29,15 @@ namespace CA2API.Controllers
         }
 
         // GET: api/Dogs/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetDog([FromRoute] string id)
+        [HttpGet("{breed}")]
+        public IActionResult GetDogBreed( string breed)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var dog = await _context.Dogs.FindAsync(id);
+            var dog =  _context.Dogs.FirstOrDefault(e => e.Breed.ToUpper() == breed.ToUpper());
 
             if (dog == null)
             {
@@ -47,16 +47,38 @@ namespace CA2API.Controllers
             return Ok(dog);
         }
 
+        // GET: api/Dogs/5
+        [HttpGet("status/{IsAdopted}")]
+        public IActionResult GetDogAdoptionStatus(bool IsAdopted)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var dog = _context.Dogs.OrderBy(e => e.IsAdopted == IsAdopted);
+
+            if (dog == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(dog);
+
+        }
+
+
         // PUT: api/Dogs/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDog([FromRoute] string id, [FromBody] Dog dog)
+        [HttpPut("{name}")]
+        public async Task<IActionResult> PutDog([FromRoute] string name, [FromBody] Dog dog)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != dog.ID)
+            if (name != dog.Name)
             {
                 return BadRequest();
             }
@@ -69,7 +91,7 @@ namespace CA2API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DogExists(id))
+                if (!DogExists(name))
                 {
                     return NotFound();
                 }
@@ -81,6 +103,8 @@ namespace CA2API.Controllers
 
             return NoContent();
         }
+
+      
 
         // POST: api/Dogs
         [HttpPost]
