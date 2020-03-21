@@ -8,8 +8,8 @@ namespace CA2API
 {
     public class Dog
     {
-           [Key]
-        public String ID { get; set; }
+        [Key]
+        public int ID { get; set; }
         public String Name { get; set; }
         public String Breed { get; set; }
         public double Age { get; set; }

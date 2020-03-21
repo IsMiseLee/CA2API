@@ -20,7 +20,7 @@ namespace CA2API.Data.Migrations
 
             modelBuilder.Entity("CA2API.Dog", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("Age");
