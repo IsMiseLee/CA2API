@@ -24,7 +24,6 @@ namespace CA2API.Controllers
 
         // GET: api/Dogs
         [HttpGet]
-        
         public IEnumerable<Dog> GetDogs()
         {
             return _context.Dogs;
@@ -50,7 +49,7 @@ namespace CA2API.Controllers
         }
 
         // GET: api/Dogs/5
-       /* [HttpGet("status/{IsAdopted}")]
+        [HttpGet("status/{IsAdopted}")]
         public IActionResult GetDogAdoptionStatus(bool IsAdopted)
         {
 
@@ -59,7 +58,7 @@ namespace CA2API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var dog = _context.Dogs.OrderBy(e => e.IsAdopted == IsAdopted);
+            var dog = _context.Dogs.Where(e => e.IsAdopted == IsAdopted);
 
             if (dog == null)
             {
@@ -68,12 +67,11 @@ namespace CA2API.Controllers
 
             return Ok(dog);
 
-        }*/
+        }
 
 
-        // PUT: api/Dogs/5
-       [HttpPut("{id}")]
-        public async Task<IActionResult> PutDog([FromRoute] int id, [FromBody] Dog dog)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutDog([FromRoute] string id, [FromBody] Dog dog)
         {
             if (!ModelState.IsValid)
             {
@@ -106,7 +104,7 @@ namespace CA2API.Controllers
             return NoContent();
         }
 
-      
+
 
         // POST: api/Dogs
         [HttpPost]
@@ -123,9 +121,29 @@ namespace CA2API.Controllers
             return CreatedAtAction("GetDog", new { id = dog.ID }, dog);
         }
 
+        // DELETE: api/Dogs/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteDog([FromRoute] string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var dog = await _context.Dogs.FindAsync(id);
+            if (dog == null)
+            {
+                return NotFound();
+            }
+
+            _context.Dogs.Remove(dog);
+            await _context.SaveChangesAsync();
+
+            return Ok(dog);
+        }
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult> Patch([FromRoute] int id, [FromBody] JsonPatchDocument<Dog> patchDoc)
+        public async Task<ActionResult> Patch([FromRoute] string id, [FromBody] JsonPatchDocument<Dog> patchDoc)
         {
             if (patchDoc == null)
             {
@@ -154,30 +172,21 @@ namespace CA2API.Controllers
         }
 
 
-        // DELETE: api/Dogs/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDog([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            var dog = await _context.Dogs.FindAsync(id);
-            if (dog == null)
-            {
-                return NotFound();
-            }
-
-            _context.Dogs.Remove(dog);
-            await _context.SaveChangesAsync();
-
-            return Ok(dog);
-        }
-
-        private bool DogExists(int id)
+        private bool DogExists(string id)
         {
             return _context.Dogs.Any(e => e.ID == id);
         }
+
+
+
+ 
+
+
+
+
+
     }
+
+
 }

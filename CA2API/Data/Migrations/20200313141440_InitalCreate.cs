@@ -10,7 +10,7 @@ namespace CA2API.Data.Migrations
                 name: "Dogs",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false),
+                    ID = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Breed = table.Column<string>(nullable: true),
                     Age = table.Column<double>(nullable: false),

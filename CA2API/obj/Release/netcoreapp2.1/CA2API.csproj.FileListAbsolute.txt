@@ -1,0 +1,14 @@
+L:\C#\CA2API\CA2API\bin\Release\netcoreapp2.1\CA2API.deps.json
+L:\C#\CA2API\CA2API\bin\Release\netcoreapp2.1\CA2API.runtimeconfig.json
+L:\C#\CA2API\CA2API\bin\Release\netcoreapp2.1\CA2API.runtimeconfig.dev.json
+L:\C#\CA2API\CA2API\bin\Release\netcoreapp2.1\CA2API.dll
+L:\C#\CA2API\CA2API\bin\Release\netcoreapp2.1\CA2API.pdb
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.csproj.CoreCompileInputs.cache
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.RazorAssemblyInfo.cache
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.RazorAssemblyInfo.cs
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.AssemblyInfoInputs.cache
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.AssemblyInfo.cs
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.RazorTargetAssemblyInfo.cache
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.dll
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.pdb
+L:\C#\CA2API\CA2API\obj\Release\netcoreapp2.1\CA2API.csprojAssemblyReference.cache
